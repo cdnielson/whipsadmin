@@ -1,0 +1,36 @@
+<style>
+    #left-nav {
+        width: 300px;
+        border-right: 1px solid black;
+    }
+</style>
+<div class="layout horizontal">
+    <div id="left-nav">
+        <div *ngFor="let order of ordersDisplayed" class="layout vertical start">
+            <br>ID: {{order.idx}}
+            <br>Last Name: {{order.lastName}}
+            <br>First Name: {{order.firstName}}
+            <br>Currency: {{order.currency}}
+            <br>Shipping: {{order.shipping}}
+            <br>Total: {{order.total}}
+            <br>Paid: {{order.paid}}
+            <br>Completed: {{order.completed}}
+            <button class="btn btn-default" (click)="showDetails(order.idx)">Show Details</button>
+            <button class="btn btn-default" (click)="markComplete(order.idx)">
+                <span *ngIf="order.completed">Mark Incomplete</span>
+                <span *ngIf="!order.completed">Mark Complete</span></button>
+        </div>
+    </div>
+    <div id="content">
+        <div [hidden]="hideDetails">
+            <div *ngFor="let order of currentOrder">
+                {{order.description}}
+                {{order.material}}
+                {{order.length}}
+                {{order.price}}
+                {{order.quantity}}
+            </div>
+        </div>
+    </div>
+</div>
+
